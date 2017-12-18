@@ -1,0 +1,12 @@
+o := orm.NewOrm()
+
+	sSql := "SELECT username as Username, realname as Realname, cellphone as Cellphone, name as Name, 1 as Shipnumber
+	 		 FROM account as a INNER JOIN Permission as p On a.level = p.level" 
+	loca := new(UserInfo)
+	err := o.Raw(sSql).QueryRow(&loca)
+	if err == nil {
+		return loca, nil
+	} else {
+	//	beego.Error(err)
+		return nil, err
+	}
